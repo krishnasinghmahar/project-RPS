@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissor</title>
+    <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    
+    <h1 id="title">ROCK PAPER SCISSORS</h1>
+    <div id="content">
+        <h2 id="result">Choose your weapon</h2>
+        <p id="p1">First to score 5 points wins the game</p>
+        <div id="chosen">
+            <div class="chosen-child">
+                <div id="qMark-player">❔</div>
+                <p id="pCounter">Player : 0</p>
+            </div>
+            <div class="chosen-child">
+                <div id="qMark-computer">❔</div>
+                <p id="cCounter">Computer : 0</p>
+            </div>
+        </div>
+        <div id="sign">
+            <button id="rock-btn">
+                <div id="sign-r">✊</div>
+            </button>
+            <button id="paper-btn">
+                <div id="sign-p">✋</div>
+            </button>
+            <button id="scissors-btn">
+                <div id="sign-s">✌</div>
+            </button>
+            <p id="endMsg"></p>
+            <button id="restart"></button>
+        </div>
+
+        <div id="footer">
+            <p>
+                Copyright ©
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
+                krishna
+            </p>
+        </div>
+    </div>
 </body>
+
 </html>

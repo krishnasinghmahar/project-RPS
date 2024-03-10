@@ -1,0 +1,97 @@
+* {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+html {
+    min-height: 100%;
+    background-color: #2a2e35;
+}
+
+#title {
+    background-color: #111720;
+    padding: 30px;
+    color: yellow;
+    font-size: 50px;
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#content {
+    min-height: 100%;
+    background-color: #2a2e35;
+}
+
+h2 {
+    font-size: 40px;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+#p1 {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+#chosen {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 40px;
+}
+
+#qMark-player, #qMark-computer {
+    font-size: 80px;
+    margin-bottom: 20px;
+
+}
+
+.chosen-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+}
+
+#sign  {
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+    gap: 40px;
+    margin: 80px;
+}
+
+#sign>button>div {
+    font-size: 80px;
+    padding: 30px;
+    border-radius: 20px;
+   
+}
+
+#footer {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+#footer>p {
+    font-weight: 100;
+    font-size: 25px;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    border-radius: 22px;
+    border: none;
+    gap: 50px;  
+    background-color: #575f6b;
+}
+
+button:hover{
+    background-color:#a1aab9;
+    cursor: pointer;
+}

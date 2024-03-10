@@ -1,70 +1,93 @@
-let playerWin = 0;
-let comWin = 0;
+const rockBtn = document.querySelector('#rock-btn');
+const paperBtn = document.querySelector('#paper-btn');
+const scissorsBtn = document.querySelector('#scissors-btn');
+const playerSelection = document.querySelector('#qMark-player');
+const computerSelection = document.querySelector('#qMark-computer');
+const result = document.querySelector('#result');
+const resultContent = document.querySelector('#p1');
+const cCounter = document.querySelector('#cCounter');
+const pCounter = document.querySelector('#pCounter');
+const restartBtn = document.querySelector('#restart');
 
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection !== 'ROCK' && playerSelection !== 'PAPER' && playerSelection !== 'SCISSORS') {
-        return alert(`${playerSelection} is not valid entry!!`);
-    }
 
-    (playerSelection === computerSelection) ? alert(`Draw both selected the ${playerSelection}`) : whoWin();
-    function whoWin() {
-        let a = playerSelection;
-        let b = computerSelection;
-        if ((a === "ROCK" && b === "SCISSORS") || (a === "PAPER" && b === "ROCK") || (a === "SCISSORS" && b === "ROCK")) {
-            alert(`You win ! ${a} beats ${b}`);
-            playerWin++;
-        } else {
-            alert(`You Lose ! ${b} beats ${a}`);
-            comWin++;
-        }
-    }
-}
+
+let cWinCounter = 0;
+let pWinCounter = 0;
+
+rockBtn.addEventListener('click', () => {
+    playerSelection.textContent = '✊';
+    computerSelection.textContent = getComputerChoice();
+    playRound(playerSelection.textContent, computerSelection.textContent);
+});
+
+paperBtn.addEventListener('click', () => {
+    playerSelection.textContent = '✋';
+    computerSelection.textContent = getComputerChoice();
+    playRound(playerSelection.textContent, computerSelection.textContent);
+});
+
+scissorsBtn.addEventListener('click', () => {
+    playerSelection.textContent = '✌';
+    computerSelection.textContent = getComputerChoice();
+    playRound(playerSelection.textContent, computerSelection.textContent);
+});
+
+restartBtn.addEventListener('click',restartGame);
+
 
 function getComputerChoice() {
-    let str = ['ROCK', 'PAPER', 'SCISSORS'];
+    let str = ['✊', '✋', '✌'];
     let choice = Math.floor(Math.random() * 3);
     return str[choice];
 }
 
+function playRound(playerChoice, computerChoice) {
+    const a = playerChoice;
+    const b = computerChoice;
+    if (a === b) {
+        //draw
+        result.textContent = "It's a Tie!";
+        resultContent.textContent = `${a} ties with ${a}`;
+    } else if ((a === "✊" && b === "✌") || (a === "✋" && b === "✊") || (a === "✌" && b === "✋")) {
+        //player win
+        pWinCounter++;
+        result.textContent = "You Won!"
+        resultContent.textContent = `${a} Beats ${b}`;
+        pCounter.textContent = `Player : ${pWinCounter}`;
+        if (pWinCounter === 5) {
+            endGame();
+        }
 
-let announce = alert("GET READY FOR FIVE ROUNDS OF ROCK PAPER SCISSORS");
-
-function getPlayerChoice() {
-    let choice = prompt("Choose  one option 'ROCK','PAPER','SCISSORS'", "").toUpperCase();
-    return choice;
-}
-
-// let playerSelection = getPlayerChoice();
-// let computerSelection = getComputerChoice();
-
-function playGame(){
-    for(let i = 1 ; i<=5 ; i++){
-        alert(`ROUND = ${i}`);
-        console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    }
-}
-
-function overAllWinner(){
-    if(playerWin > comWin){
-        alert( `Over All points : \n YOU : ${playerWin} \n COMPUTER : ${comWin} \n *** YOU ARE WINNER ***`);
-    }else if(playerWin < comWin){
-        alert(`Over All points : \n YOU : ${playerWin} \n COMPUTER : ${comWin} \n *** YOU LOSE ***`);
-    }else{
-        alert(`Over All points : \n YOU : ${playerWin} \n COMPUTER : ${comWin} \n *** DRAW ***`);
-    }
-}
-function restartGame() {
-    
-    let userResponse = window.confirm("Do you want to restart the game?");
-
-    if (userResponse) {
-        window.location.reload();
     } else {
-        alert("THANKS FOR PLAYING GAME !!!");
+        //player lose
+        cWinCounter++;
+        result.textContent = "You Lost!"
+        resultContent.textContent = `${b} Beats ${a}`;
+        cCounter.textContent = `Computer : ${cWinCounter}`;
+        if (cWinCounter === 5){
+            endGame();
+        }
     }
 }
 
 
-playGame();
-overAllWinner();
-restartGame();
+function restartGame() {
+    pWinCounter = 0;
+    cWinCounter = 0;
+    result.textContent = 'Choose your weapon';
+    resultContent.textContent = 'First to score 5 points wins the game';
+    pCounter.textContent = 'Player: 0';
+    cCounter.textContent = 'Computer: 0';
+    playerSelection.textContent = '❔';
+    computerSelection.textContent = '❔';
+}
+
+function endGame(){
+    if(pWinCounter == 5){
+        alert("YOU WIN!\n Play Again!!");
+        restartGame();
+    }else {
+        alert("YOU LOST! \n Play Again!!");
+        restartGame();
+    }
+}
